@@ -863,6 +863,8 @@ MonoBehaviour:
   MaxHP: 8
   HealthbarFG: {fileID: 994363665}
   HealthbarBG: {fileID: 363602144}
+  ExplosionSystem: {fileID: 198619207021013190, guid: cd38460a6ae9ab747a609b9eb50b8371,
+    type: 2}
   FollowObject: 1
 --- !u!1 &1834913413
 GameObject:
@@ -1114,6 +1116,7 @@ MonoBehaviour:
   MaxHP: 8
   HealthbarFG: {fileID: 1007745182}
   HealthbarBG: {fileID: 1095645047}
+  ExplosionSystem: {fileID: 0}
   FollowObject: 0
 --- !u!60 &2085698927
 PolygonCollider2D:

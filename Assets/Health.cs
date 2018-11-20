@@ -8,6 +8,7 @@ public class Health : MonoBehaviour {
 	public int MaxHP = 8;
 	public GameObject HealthbarFG;
 	public GameObject HealthbarBG;
+	public ParticleSystem ExplosionSystem;
 	public bool FollowObject;
 
 	static Color HealthyColor = new Color(166/255f, 253/255f, 177/255f);
@@ -26,6 +27,19 @@ public class Health : MonoBehaviour {
 		{
 			HP--;
 			UpdateUI();
+		}
+
+		if (HP == 0)
+		{
+			Instantiate(ExplosionSystem, transform.position, transform.rotation);
+
+			if (FollowObject)
+			{
+				Destroy(transform.parent.gameObject);
+			} else
+			{
+				Destroy(gameObject);
+			}
 		}
 	}
 

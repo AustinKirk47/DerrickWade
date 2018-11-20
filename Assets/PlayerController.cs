@@ -10,29 +10,34 @@ public class PlayerController : MonoBehaviour {
 
 	private Rigidbody2D body;
 
-	// Use this for initialization
 	void Start () {
 		body = GetComponent<Rigidbody2D>();
 		body.freezeRotation = true;
 	}
 	
-	// Update is called once per frame
 	void FixedUpdate () {
 		HandleMovement();
 		body.rotation = GetAngle();
 
 		if (Input.GetMouseButtonDown(0))
 		{
-			Vector2 direction = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * body.rotation), Mathf.Cos(Mathf.Deg2Rad * body.rotation));
-
-			GameObject p = Instantiate(Projectile);
-			p.transform.position = transform.position + new Vector3(direction.x, direction.y, 0);
-			p.GetComponent<Rigidbody2D>().velocity = direction * ProjectileSpeed;
+			Fire();
 		}
 	}
 
+	void Fire()
+	{
+		Vector2 direction = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * body.rotation), Mathf.Cos(Mathf.Deg2Rad * body.rotation));
+
+		GameObject p = Instantiate(Projectile);
+		p.transform.position = transform.position + new Vector3(direction.x, direction.y, 0);
+		p.GetComponent<Rigidbody2D>().velocity = direction * ProjectileSpeed;
+
+		Destroy(p, 5);
+	}
+
 	private void HandleMovement()
-	{`
+	{
 		if (Input.GetKey(KeyCode.W))
 		{
 			body.AddForce(Vector2.up * MovementSpeed);

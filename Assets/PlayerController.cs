@@ -61,4 +61,13 @@ public class PlayerController : MonoBehaviour {
 		Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		return Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg - 90;
 	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.tag.Equals("Point"))
+		{
+			Debug.Log("+1 point!");
+			Destroy(other.gameObject);
+		}
+	}
 }

@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour {
 	public float FireRate = 1;
 	public float FollowDistance = 10;
 	public GameObject Projectile;
+	public GameObject[] Loot;
 
 	private Rigidbody2D body;
 	private GameObject player;
@@ -40,6 +41,17 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
+	public void OnDeath()
+	{
+		if (Random.Range(0f, 1f) < 0.75f && Loot.Length > 0)
+		{
+			int i = Random.Range(0, Loot.Length);
+			GameObject loot = Instantiate(Loot[i]);
+			loot.transform.position = transform.position;
+			loot.GetComponent<Rigidbody2D>().velocity = Random.insideUnitCircle * 0.5f;
+			loot.GetComponent<Rigidbody2D>().angularVelocity = Random.value * 20;
+		}
+	}
 	
 	void Fire()
 	{
@@ -55,7 +67,7 @@ public class EnemyController : MonoBehaviour {
 
 	void MaintainPlayerDistance()
 	{
-		Vector3 delta = player.transform.position - transform.position;
+		Vector3 delta = player.transform.position + Random.insideUnitSphere * 5 - transform.position;
 		Vector2 desiredVelocity;
 		if (Mathf.Abs(delta.magnitude - FollowDistance) > epsilon)
 		{

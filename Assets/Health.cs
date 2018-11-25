@@ -40,6 +40,21 @@ public class Health : MonoBehaviour {
 			{
 				Destroy(gameObject);
 			}
+
+			EnemyController enemyController = GetComponent<EnemyController>();
+			if (enemyController != null)
+			{
+				enemyController.OnDeath();
+			}
+		}
+	}
+
+	public void Heal()
+	{
+		if (HP < MaxHP)
+		{
+			HP = Mathf.Min(MaxHP, HP + 2);
+			UpdateUI();
 		}
 	}
 
@@ -80,6 +95,13 @@ public class Health : MonoBehaviour {
 		{
 			TakeDamage();
 			Destroy(other.gameObject);
+		} else if (other.gameObject.tag.Equals("Health"))
+		{
+			if (HP < MaxHP)
+			{
+				Heal();
+				Destroy(other.gameObject);
+			}
 		}
 	}
 }

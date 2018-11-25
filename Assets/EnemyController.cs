@@ -17,14 +17,22 @@ public class EnemyController : MonoBehaviour {
 	private float FireAllowance = 0;
 	private int LastSecond = 0;
 
+	private float SpawnTime;
+
 	void Start () {
 		body = GetComponent<Rigidbody2D>();
 		body.freezeRotation = true;
 
 		player = GameObject.FindWithTag("Player");
+
+		SpawnTime = Time.time;
 	}
 	
 	void FixedUpdate () {
+		if (Time.time - SpawnTime < 2)
+		{
+			return;
+		}
 		AimAtPlayer();
 		MaintainPlayerDistance();
 

@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class BackgroundController : MonoBehaviour {
+public class LevelManager : MonoBehaviour
+{
 
 	public GameObject WarpEffect;
 	public GameObject FlashPanel;
+	public GameObject Background;
+
+	public string[] Levels;
+
+	private int level = -1;
 
 
 	private float WarpTime = -1;
@@ -16,12 +23,15 @@ public class BackgroundController : MonoBehaviour {
 	private float speed;
 	private float offset;
 	private float shake;
+	private bool loaded;
 
 	private Vector3 originalCameraPos;
 	private Vector3 originalPos;
+	private HashSet<GameObject> objectsToRemove;
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		originalCameraPos = Camera.main.transform.localPosition;
 		originalPos = transform.position;
 	}
@@ -35,6 +45,20 @@ public class BackgroundController : MonoBehaviour {
 		offset = 10;
 		shake = 0;
 		transSpeed = 0;
+		loaded = false;
+
+
+		objectsToRemove = new HashSet<GameObject>();
+		foreach (GameObject o in GameObject.FindObjectsOfType(typeof(GameObject)))
+		{
+			GameObject root = o.transform.root.gameObject;
+			if (root.layer != 5 && root.layer != 8)
+			{
+				objectsToRemove.Add(root);
+			}
+		}
+
+		level++;
 	}
 	// Update is called once per frame
 	void Update()
@@ -54,7 +78,16 @@ public class BackgroundController : MonoBehaviour {
 		if (time < 9f)
 		{
 			transSpeed = Time.deltaTime * Mathf.Pow(time, 3);
-			transform.Translate(-transSpeed, 0, 0);
+			Background.transform.Translate(-transSpeed, 0, 0);
+
+			foreach (GameObject o in objectsToRemove)
+			{
+				if (o == null)
+				{
+					continue;
+				}
+				o.transform.position += new Vector3(-transSpeed, 0, 0);
+			}
 
 			if (time > 3.5f)
 			{
@@ -76,7 +109,7 @@ public class BackgroundController : MonoBehaviour {
 
 				warp.transform.position = new Vector3(offset, 0, 0);
 				warp.GetComponent<ParticleSystem>().startColor = new Color(1, 1, 1, alpha);
-				GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1 - alpha);
+				Background.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1 - alpha);
 				warp.GetComponent<ParticleSystem>().startSpeed = speed;
 			}
 
@@ -84,22 +117,35 @@ public class BackgroundController : MonoBehaviour {
 			{
 				FlashPanel.GetComponent<Image>().color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), (time - 8) * 5);
 			}
-		} else
+
+			if (time > 8.5f && !loaded)
+			{
+				loaded = true;
+				string levelName = Levels[level];
+				SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
+			}
+		}
+		else
 		{
 			if (warp != null)
 			{
 				Destroy(warp);
 				warp = null;
-				transform.position = originalPos;
+				Background.transform.position = originalPos;
 				shake = 0.1f;
 				transSpeed = 20;
-				GetComponent<SpriteRenderer>().color = Color.white;
+				Background.GetComponent<SpriteRenderer>().color = Color.white;
+				foreach (GameObject o in objectsToRemove)
+				{
+					Destroy(o, 5);
+				}
+				objectsToRemove.Clear();
 			}
 
 			shake = Mathf.Max(0, shake - Time.deltaTime * 0.1f);
 			transSpeed = Mathf.Max(0, transSpeed * 0.95f);
 
-			transform.Translate(-transSpeed, 0, 0);
+			Background.transform.Translate(-transSpeed, 0, 0);
 
 			FlashPanel.GetComponent<Image>().color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0), (time - 9) * 5);
 			Camera.main.transform.localPosition = originalCameraPos + Random.insideUnitSphere * shake;
@@ -107,6 +153,15 @@ public class BackgroundController : MonoBehaviour {
 			if (time > 11)
 			{
 				WarpTime = -1;
+				string levelName = Levels[level];
+				foreach (GameObject o in SceneManager.GetSceneByName(levelName).GetRootGameObjects())
+				{
+					LevelController levelController = o.GetComponent<LevelController>();
+					if (levelController != null)
+					{
+						levelController.LevelReady();
+					}
+				}
 			}
 		}
 	}

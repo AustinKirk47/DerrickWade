@@ -15,8 +15,9 @@ public class FreighterController : EnemyController {
 		GameObject p = Instantiate(Projectile);
 		p.transform.position = transform.position + new Vector3(direction.x, direction.y, 0) * 2f;
 		p.GetComponent<Rigidbody2D>().velocity = direction * ProjectileSpeed;
-        
-		Destroy(p, 5);
+        p.GetComponent<Rigidbody2D>().rotation = Gun.transform.eulerAngles.z + 90;
+
+        Destroy(p, 5);
 		FireAllowance--;
 	}
 

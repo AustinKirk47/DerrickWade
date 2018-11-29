@@ -166,7 +166,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1472409132602702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.761547, y: 1.5706598, z: 7.6496396}
+  m_LocalPosition: {x: 9.432645, y: -0.84179527, z: 7.6496396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4858304646948920}
@@ -209,8 +209,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1384272355376324}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5799999, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.858, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 2, z: 1.5}
   m_Children: []
   m_Father: {fileID: 4858304646948920}
   m_RootOrder: 1
@@ -318,7 +318,7 @@ MonoBehaviour:
   ProjectileSpeed: 10
   FireRate: 1
   FollowDistance: 10
-  Projectile: {fileID: 1118089384638028, guid: 4a845d4241b699f46b304d96ca9d8bd8, type: 2}
+  Projectile: {fileID: 1254576061021254, guid: a00aae6c5aa2ab5489c7d825231b43f3, type: 2}
   Loot:
   - {fileID: 1310386560181230, guid: b5098562a91e46d48bba3e87cb009736, type: 2}
   - {fileID: 1458012690183538, guid: bc9a3c17aae3f4e46b09bb7ebe39316d, type: 2}

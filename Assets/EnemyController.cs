@@ -10,11 +10,11 @@ public class EnemyController : MonoBehaviour {
 	public GameObject Projectile;
 	public GameObject[] Loot;
 
-	private Rigidbody2D body;
-	private GameObject player;
+	protected Rigidbody2D body;
+	protected GameObject player;
 
 	private float epsilon = 5f;
-	private float FireAllowance = 0;
+	protected float FireAllowance = 0;
 	private int LastSecond = 0;
 
 	private float SpawnTime;
@@ -61,7 +61,7 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 	
-	void Fire()
+	protected virtual void Fire()
 	{
 		Vector2 direction = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * body.rotation), Mathf.Cos(Mathf.Deg2Rad * body.rotation));
 
@@ -73,7 +73,7 @@ public class EnemyController : MonoBehaviour {
 		FireAllowance--;
 	}
 
-	void MaintainPlayerDistance()
+	protected virtual void MaintainPlayerDistance()
 	{
 		Vector3 delta = player.transform.position + Random.insideUnitSphere * 5 - transform.position;
 		Vector2 desiredVelocity;
@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour {
 
 		body.velocity = body.velocity * 0.8f + desiredVelocity * 0.2f;
 	}
-	void AimAtPlayer()
+	protected virtual void AimAtPlayer()
 	{
 		Vector2 playerPos = player.transform.position;
 		float angle = Mathf.Atan2(playerPos.y - transform.position.y, playerPos.x - transform.position.x) * Mathf.Rad2Deg - 90;

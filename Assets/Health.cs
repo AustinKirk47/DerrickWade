@@ -16,13 +16,25 @@ public class Health : MonoBehaviour {
 
 	private int HP;
 
-	void Start () {
+    private Vector3 originalCameraPos;
+
+    void Start () {
 		HP = MaxHP;
 		SetColor(HealthyColor);
-	}
+    }
 
 	public void TakeDamage()
 	{
+        if (HP <= 0)
+        {
+            return;
+        }
+
+        if (gameObject.GetInstanceID() == GameObject.FindGameObjectWithTag("Player").GetInstanceID())
+        {
+            StartCoroutine("CameraShake");
+        }
+
 		if (HP > 0)
 		{
 			HP--;
@@ -89,7 +101,18 @@ public class Health : MonoBehaviour {
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D other)
+    IEnumerator CameraShake()
+    {
+        originalCameraPos = Camera.main.transform.localPosition;
+        for (int i = 0; i < 15; i++)
+        {
+            Camera.main.transform.localPosition = originalCameraPos + Random.insideUnitSphere * 0.5f;
+            yield return null;
+        }
+        Camera.main.transform.localPosition = originalCameraPos;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.tag.Equals("Projectile"))
 		{

@@ -22,8 +22,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Boss1
+  - Boss2
   - 
   - 
   - 
@@ -44,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3945018305
+    locked: 0
+  - name: Foreground
+    uniqueID: 2494633737
     locked: 0

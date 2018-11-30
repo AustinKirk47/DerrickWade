@@ -68,7 +68,7 @@ public class BossGun : MonoBehaviour
         Vector2 direction = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * body.rotation), Mathf.Cos(Mathf.Deg2Rad * body.rotation));
 
         GameObject p = Instantiate(Projectile);
-        p.transform.position = transform.position + new Vector3(direction.x, direction.y, 0) * 1.5f;
+        p.transform.position = transform.position + new Vector3(direction.x, direction.y, 0) * 3.5f;
         p.GetComponent<Rigidbody2D>().velocity = direction * ProjectileSpeed;
 
         Destroy(p, 5);

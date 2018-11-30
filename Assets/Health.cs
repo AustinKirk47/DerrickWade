@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour {
 
@@ -32,17 +33,23 @@ public class Health : MonoBehaviour {
             return;
         }
 
-        if (gameObject.GetInstanceID() == GameObject.FindGameObjectWithTag("Player").GetInstanceID())
+        if (HP > 0)
         {
-            StartCoroutine("CameraShake");
-            StartCoroutine("FlashRed");
+            HP--;
+            UpdateUI();
         }
 
-		if (HP > 0)
-		{
-			HP--;
-			UpdateUI();
-		}
+        if (gameObject.GetInstanceID() == GameObject.FindGameObjectWithTag("Player").GetInstanceID())
+        {
+            if (HP > 0)
+            {
+                StartCoroutine("CameraShake");
+                StartCoroutine("FlashRed");
+            } else
+            {
+                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            }
+        }
 
 		if (HP == 0)
 		{

@@ -10,13 +10,12 @@ public class Health : MonoBehaviour {
 	public GameObject HealthbarBG;
 	public ParticleSystem ExplosionSystem;
 	public bool FollowObject;
+    public GameObject HealthFlash;
 
 	static Color HealthyColor = new Color(166/255f, 253/255f, 177/255f);
 	static Color DangerColor = new Color(253/255f, 166/255f, 177/255f);
 
 	private int HP;
-
-    private Vector3 originalCameraPos;
 
     void Start () {
 		HP = MaxHP;
@@ -33,6 +32,7 @@ public class Health : MonoBehaviour {
         if (gameObject.GetInstanceID() == GameObject.FindGameObjectWithTag("Player").GetInstanceID())
         {
             StartCoroutine("CameraShake");
+            StartCoroutine("FlashRed");
         }
 
 		if (HP > 0)
@@ -103,13 +103,24 @@ public class Health : MonoBehaviour {
 
     IEnumerator CameraShake()
     {
-        originalCameraPos = Camera.main.transform.localPosition;
+        Vector3 originalCameraPos = Camera.main.transform.localPosition;
         for (int i = 0; i < 15; i++)
         {
             Camera.main.transform.localPosition = originalCameraPos + Random.insideUnitSphere * 0.5f;
             yield return null;
         }
         Camera.main.transform.localPosition = originalCameraPos;
+    }
+
+    IEnumerator FlashRed()
+    {
+        Image image = HealthFlash.GetComponent<Image>();
+        for (float i = 0.9f; i >= 0.001; i*=0.95f)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, i);
+            yield return null;
+        }
+       
     }
 
     private void OnTriggerEnter2D(Collider2D other)

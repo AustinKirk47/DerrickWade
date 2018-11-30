@@ -6,6 +6,8 @@ public class Exploder : MonoBehaviour {
 
     public GameObject Explosion;
 
+    private bool isQuitting;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,6 +17,11 @@ public class Exploder : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void OnApplicationQuit()
+    {
+        isQuitting = true;
+    }
 
     void Explode()
     {
@@ -29,7 +36,10 @@ public class Exploder : MonoBehaviour {
 
     void OnDestroy()
     {
-        Explode();
+        if (!isQuitting)
+        {
+            Explode();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

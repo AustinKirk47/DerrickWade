@@ -17,9 +17,12 @@ public class Health : MonoBehaviour {
 
 	private int HP;
 
+    private Vector2 OGscale;
+
     void Start () {
 		HP = MaxHP;
 		SetColor(HealthyColor);
+        OGscale = HealthbarBG.GetComponent<RectTransform>().localScale;
     }
 
 	public void TakeDamage()
@@ -73,7 +76,7 @@ public class Health : MonoBehaviour {
 	void UpdateUI()
 	{
 		float scale = (float)HP / MaxHP;
-		HealthbarBG.GetComponent<RectTransform>().localScale = new Vector2(scale, 1);
+		HealthbarBG.GetComponent<RectTransform>().localScale = OGscale * new Vector2(scale, 1);
 
 		if (scale <= 0.3f)
 		{

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missile : MonoBehaviour {
+public class Exploder : MonoBehaviour {
 
     public GameObject Explosion;
 
@@ -18,7 +18,11 @@ public class Missile : MonoBehaviour {
 
     void OnDestroy()
     {
-        GetComponentInChildren<TrailRenderer>().transform.SetParent(null, true);
+        TrailRenderer trail = GetComponentInChildren<TrailRenderer>();
+        if (trail != null)
+        {
+            trail.transform.SetParent(null, true);
+        }
         GameObject splode = Instantiate(Explosion, transform.position, Quaternion.identity);
         Destroy(splode, splode.GetComponent<ParticleSystem>().duration);
     }

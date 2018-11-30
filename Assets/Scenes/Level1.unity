@@ -173,6 +173,10 @@ MonoBehaviour:
     type: 2}
   SpawnPoints:
   - {fileID: 887990836}
+  ObstacleSpawnInterval: 10
+  Obstacles:
+  - {fileID: 1991871348135474, guid: 37b438b8d53a7394ca338208241e0915, type: 2}
+  ObstacleSpeed: 5
 --- !u!4 &1096759681
 Transform:
   m_ObjectHideFlags: 0

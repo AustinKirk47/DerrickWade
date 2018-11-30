@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		if (Time.time - SpawnTime < 2)
+		if (Time.time - SpawnTime < 1f)
 		{
 			return;
 		}

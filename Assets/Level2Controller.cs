@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level1Controller : LevelController
+public class Level2Controller : LevelController
 {
 
-	public GameObject Enemy;
-	public GameObject SpawnEffect;
-	public Transform[] SpawnPoints;
+    public GameObject Enemy1;
+    public GameObject Enemy2;
+    public GameObject SpawnEffect;
+    public Transform[] SpawnPoints1;
+    public Transform[] SpawnPoints2;
 
     public int ObstacleSpawnInterval;
     public GameObject[] Obstacles;
@@ -27,10 +29,15 @@ public class Level1Controller : LevelController
 
 	public override void LevelReady()
 	{
-		foreach (Transform t in SpawnPoints)
-		{
-			SpawnEnemy(t.position, t.rotation);
-		}
+        foreach (Transform t in SpawnPoints1)
+        {
+            SpawnEnemy1(t.position, t.rotation);
+        }
+
+        foreach (Transform t in SpawnPoints2)
+        {
+            SpawnEnemy2(t.position, t.rotation);
+        }
 
         lastSpawnTime = Time.time;
 	}
@@ -46,12 +53,19 @@ public class Level1Controller : LevelController
         }
     }
 
-	void SpawnEnemy(Vector3 position, Quaternion rotation)
-	{
-		GameObject effect = Instantiate(SpawnEffect, position, Quaternion.identity);
-		Instantiate(Enemy, position, rotation);
-		Destroy(effect, 2);
-	}
+    void SpawnEnemy1(Vector3 position, Quaternion rotation)
+    {
+        GameObject effect = Instantiate(SpawnEffect, position, Quaternion.identity);
+        Instantiate(Enemy1, position, rotation);
+        Destroy(effect, 2);
+    }
+
+    void SpawnEnemy2(Vector3 position, Quaternion rotation)
+    {
+        GameObject effect = Instantiate(SpawnEffect, position, Quaternion.identity);
+        Instantiate(Enemy2, position, rotation);
+        Destroy(effect, 2);
+    }
 
     void SpawnObstacle()
     {

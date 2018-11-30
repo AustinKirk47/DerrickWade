@@ -116,9 +116,9 @@ NavMeshSettings:
 --- !u!1 &210269133
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 210269134}
   m_Layer: 0
@@ -131,11 +131,11 @@ GameObject:
 --- !u!4 &210269134
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 210269133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.59, y: -0.39, z: 0}
+  m_LocalPosition: {x: 7.6, y: -5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 334885672}
@@ -144,9 +144,9 @@ Transform:
 --- !u!1 &334885670
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 334885672}
   - component: {fileID: 334885671}
@@ -160,24 +160,33 @@ GameObject:
 --- !u!114 &334885671
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 334885670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 857ec59e3a701584e8118680abc1d0ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 772d91992b0834e4281f95d05d846b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 1740615341431860, guid: 607b187139f953b42860f840f74133fb, type: 2}
+  Enemy1: {fileID: 1740615341431860, guid: 607b187139f953b42860f840f74133fb, type: 2}
+  Enemy2: {fileID: 1472409132602702, guid: d36de0dea11877a4882d0d61ce259dff, type: 2}
   SpawnEffect: {fileID: 1724904865619366, guid: 7a5315958ff9eb1498f4486c869c7dcb,
     type: 2}
-  SpawnPoints:
+  SpawnPoints1:
   - {fileID: 1338430267}
   - {fileID: 210269134}
+  SpawnPoints2:
+  - {fileID: 566276363}
+  ObstacleSpawnInterval: 10
+  Obstacles:
+  - {fileID: 1849427589499114, guid: fb215f87eca8cb0459ef9cc704f98875, type: 2}
+  - {fileID: 1991871348135474, guid: 37b438b8d53a7394ca338208241e0915, type: 2}
+  ObstacleSpeed: 5
+  ReadyOnStart: 0
 --- !u!4 &334885672
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 334885670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -186,15 +195,44 @@ Transform:
   m_Children:
   - {fileID: 1338430267}
   - {fileID: 210269134}
+  - {fileID: 566276363}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &566276362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 566276363}
+  m_Layer: 0
+  m_Name: FreighterSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &566276363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 566276362}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.73, y: 1.88, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 334885672}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1338430266
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1338430267}
   m_Layer: 0
@@ -207,11 +245,11 @@ GameObject:
 --- !u!4 &1338430267
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1338430266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.59, y: 6.08, z: 0}
+  m_LocalPosition: {x: 7.1, y: 8.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 334885672}

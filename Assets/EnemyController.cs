@@ -63,7 +63,7 @@ public class EnemyController : MonoBehaviour {
 	
 	protected virtual void Fire()
 	{
-		Vector2 direction = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * body.rotation), Mathf.Cos(Mathf.Deg2Rad * body.rotation));
+		Vector2 direction = new Vector2(-Mathf.Cos(Mathf.Deg2Rad * body.rotation), -Mathf.Sin(Mathf.Deg2Rad * body.rotation));
 
 		GameObject p = Instantiate(Projectile);
 		p.transform.position = transform.position + new Vector3(direction.x, direction.y, 0) * 1.5f;
@@ -91,7 +91,7 @@ public class EnemyController : MonoBehaviour {
 	protected virtual void AimAtPlayer()
 	{
 		Vector2 playerPos = player.transform.position;
-		float angle = Mathf.Atan2(playerPos.y - transform.position.y, playerPos.x - transform.position.x) * Mathf.Rad2Deg - 90;
+		float angle = Mathf.Atan2(playerPos.y - transform.position.y, playerPos.x - transform.position.x) * Mathf.Rad2Deg + 180;
 
 		body.rotation = angle;
 	}

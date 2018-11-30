@@ -13,7 +13,10 @@ public class Title : MonoBehaviour {
 
     public float CrawlRate;
 
+    private float startTime;
+
 	void Start () {
+        startTime = Time.time;
         LongTime.color = new Color(LongTime.color.r, LongTime.color.g, LongTime.color.b, 0);
         TitleImage.color = new Color(1, 1, 1, 0);
         Music.PlayDelayed(2.5f);
@@ -21,8 +24,9 @@ public class Title : MonoBehaviour {
 
     void Update() {
 
+        float time = Time.time - startTime;
 
-        if (Time.time < 3)
+        if (time < 3)
         {
             LongTime.color = new Color(LongTime.color.r, LongTime.color.g, LongTime.color.b, Mathf.Min(1, LongTime.color.a + 0.01f));
         } else
@@ -30,7 +34,7 @@ public class Title : MonoBehaviour {
             LongTime.color = new Color(LongTime.color.r, LongTime.color.g, LongTime.color.b, LongTime.color.a - 0.01f);
         }
 
-        if (Time.time < 5)
+        if (time < 5)
         {
             return;
         }

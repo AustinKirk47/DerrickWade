@@ -1,73 +1,93 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
-	public float MovementSpeed = 5;
-	public float ProjectileSpeed = 10;
-	public GameObject Projectile;
+    public float MovementSpeed = 5;
+    public float ProjectileSpeed = 10;
+    public GameObject Projectile;
+    private SpriteRenderer sr;
+    public int score = 0;
+    public TextMeshProUGUI TextPro;
 
-	private Rigidbody2D body;
+    public Sprite slow;
+    public Sprite fast;
+    public float flameThreshold = 3;
 
-	void Start () {
-		body = GetComponent<Rigidbody2D>();
-		body.freezeRotation = true;
-	}
-	
-	void FixedUpdate () {
-		HandleMovement();
-		body.rotation = GetAngle();
+    private Rigidbody2D body;
 
-		if (Input.GetMouseButtonDown(0))
-		{
-			Fire();
-		}
-	}
+    void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        body = GetComponent<Rigidbody2D>();
+        body.freezeRotation = true;
+    }
 
-	void Fire()
-	{
-		Vector2 direction = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * body.rotation), Mathf.Cos(Mathf.Deg2Rad * body.rotation));
+    void FixedUpdate()
+    {
+        HandleMovement();
+        body.rotation = GetAngle();
 
-		GameObject p = Instantiate(Projectile);
-		p.transform.position = transform.position + new Vector3(direction.x, direction.y, 0) * 1.5f;
-		p.GetComponent<Rigidbody2D>().velocity = direction * ProjectileSpeed;
+        if (Input.GetMouseButtonDown(0))
+        {
+            Fire();
+        }
+    }
 
-		Destroy(p, 5);
-	}
+    void Fire()
+    {
+        Vector2 direction = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * body.rotation), Mathf.Cos(Mathf.Deg2Rad * body.rotation));
 
-	private void HandleMovement()
-	{
-		if (Input.GetKey(KeyCode.W))
-		{
-			body.AddForce(Vector2.up * MovementSpeed);
-		}
-		if (Input.GetKey(KeyCode.A))
-		{
-			body.AddForce(Vector2.left * MovementSpeed);
-		}
-		if (Input.GetKey(KeyCode.S))
-		{
-			body.AddForce(Vector2.down * MovementSpeed);
-		}
-		if (Input.GetKey(KeyCode.D))
-		{
-			body.AddForce(Vector2.right * MovementSpeed);
-		}
-	}
+        GameObject p = Instantiate(Projectile);
+        p.transform.position = transform.position + new Vector3(direction.x, direction.y, 0) * 1.5f;
+        p.GetComponent<Rigidbody2D>().velocity = direction * ProjectileSpeed;
 
-	private float GetAngle()
-	{
-		Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		return Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg - 90;
-	}
+        Destroy(p, 5);
+    }
 
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		if (other.gameObject.tag.Equals("Point"))
-		{
-			Debug.Log("+1 point!");
-			Destroy(other.gameObject);
-		}
-	}
+    private void HandleMovement()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            body.AddForce(Vector2.up * MovementSpeed);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            body.AddForce(Vector2.left * MovementSpeed);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            body.AddForce(Vector2.down * MovementSpeed);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            body.AddForce(Vector2.right * MovementSpeed);
+        }
+        if (body.velocity.x >= flameThreshold || body.velocity.x <= -flameThreshold || body.velocity.y >= flameThreshold || body.velocity.y <= -flameThreshold)
+        {
+            sr.sprite = fast;
+        }
+        else sr.sprite = slow;
+    }
+
+    private float GetAngle()
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        return Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg - 90;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag.Equals("Point"))
+        {
+            Debug.Log("+1 point!");
+            score += 10;
+            TextPro.GetComponent<TextMeshProUGUI>();
+            TextPro.text = "SCORE: " + score.ToString();
+            Destroy(other.gameObject);
+        }
+    }
 }

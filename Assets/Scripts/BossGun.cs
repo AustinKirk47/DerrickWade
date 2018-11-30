@@ -32,11 +32,12 @@ public class BossGun : MonoBehaviour
 
     void FixedUpdate()
     {
+        AimAtPlayer();
+
         if (Time.time - SpawnTime < 2)
         {
             return;
         }
-        AimAtPlayer();
 
         int second = (int)Time.time;
         if (second != LastSecond)

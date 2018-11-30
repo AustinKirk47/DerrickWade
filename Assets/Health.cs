@@ -94,7 +94,7 @@ public class Health : MonoBehaviour {
 	{
 		if (FollowObject)
 		{
-			Vector3 offset = new Vector3(-1.5f, 2, 0);
+			Vector3 offset = new Vector3(-1.5f, 1.5f, 0);
 
 			HealthbarBG.GetComponent<RectTransform>().position = transform.position + offset;
 			HealthbarFG.GetComponent<RectTransform>().position = transform.position + offset;

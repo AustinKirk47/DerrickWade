@@ -16,7 +16,7 @@ public class Exploder : MonoBehaviour {
 		
 	}
 
-    void OnDestroy()
+    void Explode()
     {
         TrailRenderer trail = GetComponentInChildren<TrailRenderer>();
         if (trail != null)
@@ -25,5 +25,19 @@ public class Exploder : MonoBehaviour {
         }
         GameObject splode = Instantiate(Explosion, transform.position, Quaternion.identity);
         Destroy(splode, splode.GetComponent<ParticleSystem>().duration);
+    }
+
+    void OnDestroy()
+    {
+        Explode();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag.Equals("Projectile"))
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
     }
 }

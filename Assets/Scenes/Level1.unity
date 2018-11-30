@@ -176,6 +176,7 @@ MonoBehaviour:
   ObstacleSpawnInterval: 10
   Obstacles:
   - {fileID: 1991871348135474, guid: 37b438b8d53a7394ca338208241e0915, type: 2}
+  - {fileID: 1849427589499114, guid: fb215f87eca8cb0459ef9cc704f98875, type: 2}
   ObstacleSpeed: 5
 --- !u!4 &1096759681
 Transform:

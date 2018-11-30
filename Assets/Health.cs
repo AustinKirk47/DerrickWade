@@ -115,11 +115,18 @@ public class Health : MonoBehaviour {
     IEnumerator FlashRed()
     {
         Image image = HealthFlash.GetComponent<Image>();
-        for (float i = 0.9f; i >= 0.001; i*=0.95f)
+        for (float i = 0.9f; i >= 0.05; i*=0.85f)
         {
+            if (i < 0.1)
+            {
+                i *= 0.75f;
+            }
+
             image.color = new Color(image.color.r, image.color.g, image.color.b, i);
             yield return null;
         }
+
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
        
     }
 

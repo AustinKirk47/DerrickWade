@@ -1,17 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour {
 
 	public float MovementSpeed = 5;
 	public float ProjectileSpeed = 10;
 	public GameObject Projectile;
+    private SpriteRenderer sr;
+    public int score = 0;
+    public TextMeshProUGUI TextPro;
 
-	private Rigidbody2D body;
+    public Sprite slow;
+    public Sprite fast;
+    public float flameThreshold = 3;
 
-	void Start () {
-		body = GetComponent<Rigidbody2D>();
+    private Rigidbody2D body;
+
+	void Start ()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        body = GetComponent<Rigidbody2D>();
 		body.freezeRotation = true;
 	}
 	
@@ -54,6 +64,11 @@ public class PlayerController : MonoBehaviour {
 		{
 			body.AddForce(Vector2.right * MovementSpeed);
 		}
+        if (body.velocity.x >= flameThreshold || body.velocity.x <= -flameThreshold || body.velocity.y >= flameThreshold || body.velocity.y <= -flameThreshold)
+        {
+            sr.sprite = fast;
+        }
+        else sr.sprite = slow;
 	}
 
 	private float GetAngle()
@@ -67,7 +82,10 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag.Equals("Point"))
 		{
 			Debug.Log("+1 point!");
-			Destroy(other.gameObject);
+            score += 10;
+            TextPro.GetComponent<TextMeshProUGUI>();
+            TextPro.text = "SCORE: " + score.ToString();
+            Destroy(other.gameObject);
 		}
 	}
 }

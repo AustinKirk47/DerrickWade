@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 4745782221400620}
   m_Layer: 0
   m_Name: Freighter
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,7 +274,7 @@ MonoBehaviour:
   MaxHP: 8
   HealthbarFG: {fileID: 1348285086191054}
   HealthbarBG: {fileID: 1974145590985450}
-  ExplosionSystem: {fileID: 198619207021013190, guid: cd38460a6ae9ab747a609b9eb50b8371,
+  ExplosionSystem: {fileID: 198423575053641768, guid: 208d0454b6bd06d489d26733c78ae0e3,
     type: 2}
   FollowObject: 1
   HealthFlash: {fileID: 0}

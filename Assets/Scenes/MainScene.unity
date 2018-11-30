@@ -777,23 +777,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114757970151097030, guid: 44faeadd16d715d4d8e8ba680f2ec859,
         type: 2}
-      propertyPath: HealthFlash
-      value: 
-      objectReference: {fileID: 1584315453}
-    - target: {fileID: 114649862298264478, guid: 44faeadd16d715d4d8e8ba680f2ec859,
-        type: 2}
-      propertyPath: fast
-      value: 
-      objectReference: {fileID: 21300000, guid: fe1c6e9a8128f9f4e9747104bb9a8e51,
-        type: 3}
-    - target: {fileID: 114649862298264478, guid: 44faeadd16d715d4d8e8ba680f2ec859,
-        type: 2}
-      propertyPath: slow
-      value: 
-      objectReference: {fileID: 21300000, guid: 402bb5a2391412545949ff59cb2e05f9,
-        type: 3}
-    - target: {fileID: 114757970151097030, guid: 44faeadd16d715d4d8e8ba680f2ec859,
-        type: 2}
       propertyPath: HealthbarFG
       value: 
       objectReference: {fileID: 1959101542}
@@ -802,6 +785,11 @@ Prefab:
       propertyPath: HealthbarBG
       value: 
       objectReference: {fileID: 1729698883}
+    - target: {fileID: 114757970151097030, guid: 44faeadd16d715d4d8e8ba680f2ec859,
+        type: 2}
+      propertyPath: HealthFlash
+      value: 
+      objectReference: {fileID: 1584315453}
     - target: {fileID: 114649862298264478, guid: 44faeadd16d715d4d8e8ba680f2ec859,
         type: 2}
       propertyPath: TextPro

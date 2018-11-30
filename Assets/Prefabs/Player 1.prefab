@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1527197680882728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.810298, y: -0.05572939, z: 0}
+  m_LocalPosition: {x: -7.9158216, y: -0.54730225, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -172,6 +172,7 @@ MonoBehaviour:
   ExplosionSystem: {fileID: 198619207021013190, guid: cd38460a6ae9ab747a609b9eb50b8371,
     type: 2}
   FollowObject: 0
+  HealthFlash: {fileID: 0}
 --- !u!212 &212801259833526788
 SpriteRenderer:
   m_ObjectHideFlags: 1

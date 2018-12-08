@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D body;
 
+    private bool alt = false;
+    public Transform Point1;
+    public Transform Point2;
+
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -42,7 +46,17 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * body.rotation), Mathf.Cos(Mathf.Deg2Rad * body.rotation));
 
         GameObject p = Instantiate(Projectile);
-        p.transform.position = transform.position + new Vector3(direction.x, direction.y, 0) * 1.5f;
+        alt = !alt;
+        if (alt)
+        {
+            p.transform.position = Point1.position + new Vector3(direction.x, direction.y, 0) * 1.25f;
+        }
+        else
+        {
+            p.transform.position = Point2.position + new Vector3(direction.x, direction.y, 0) * 1.25f;
+
+        }
+        p.transform.rotation = Quaternion.AngleAxis(transform.GetComponent<Rigidbody2D>().rotation, Vector3.forward);
         p.GetComponent<Rigidbody2D>().velocity = direction * ProjectileSpeed;
 
         Destroy(p, 5);

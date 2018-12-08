@@ -47,7 +47,7 @@ public class Health : MonoBehaviour {
                 StartCoroutine("FlashRed");
             } else
             {
-                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+                SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
             }
         }
 

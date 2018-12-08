@@ -383,6 +383,8 @@ MonoBehaviour:
   FollowDistance: 10
   Projectile: {fileID: 1118089384638028, guid: 4a845d4241b699f46b304d96ca9d8bd8, type: 2}
   Loot: []
+  ShootSound: {fileID: 82752355329517078, guid: aa3401cf05372f34c8b668c24e61b89a,
+    type: 2}
 --- !u!212 &212448188609076118
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -207,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 5
   ProjectileSpeed: 10
-  Projectile: {fileID: 1118089384638028, guid: 4a845d4241b699f46b304d96ca9d8bd8, type: 2}
+  Projectile: {fileID: 1131775596377032, guid: 3e4ee3f9af63ee044aa1dbed49ac2e29, type: 2}
   score: 0
   TextPro: {fileID: 0}
   slow: {fileID: 21300000, guid: 402bb5a2391412545949ff59cb2e05f9, type: 3}
@@ -215,6 +215,8 @@ MonoBehaviour:
   flameThreshold: 5
   Point1: {fileID: 4999554745255076}
   Point2: {fileID: 4603508350434316}
+  ShootSound: {fileID: 82384354350191350, guid: 40b5048a1071dda49aeb4ce0767166e3,
+    type: 2}
 --- !u!114 &114757970151097030
 MonoBehaviour:
   m_ObjectHideFlags: 1

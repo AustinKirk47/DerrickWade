@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public Transform Point1;
     public Transform Point2;
 
+    public AudioSource ShootSound;
+
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -58,7 +60,8 @@ public class PlayerController : MonoBehaviour
         }
         p.transform.rotation = Quaternion.AngleAxis(transform.GetComponent<Rigidbody2D>().rotation, Vector3.forward);
         p.GetComponent<Rigidbody2D>().velocity = direction * ProjectileSpeed;
-
+        var a = Instantiate(ShootSound);
+        Destroy(a, 1);
         Destroy(p, 5);
     }
 

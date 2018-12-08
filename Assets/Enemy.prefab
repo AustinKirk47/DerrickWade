@@ -355,6 +355,8 @@ MonoBehaviour:
   Loot:
   - {fileID: 1310386560181230, guid: b5098562a91e46d48bba3e87cb009736, type: 2}
   - {fileID: 1458012690183538, guid: bc9a3c17aae3f4e46b09bb7ebe39316d, type: 2}
+  ShootSound: {fileID: 82752355329517078, guid: aa3401cf05372f34c8b668c24e61b89a,
+    type: 2}
 --- !u!114 &114810977208513964
 MonoBehaviour:
   m_ObjectHideFlags: 1

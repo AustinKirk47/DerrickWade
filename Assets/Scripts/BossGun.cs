@@ -20,6 +20,8 @@ public class BossGun : MonoBehaviour
 
     private float SpawnTime;
 
+    public AudioSource ShootSound;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -71,7 +73,8 @@ public class BossGun : MonoBehaviour
         GameObject p = Instantiate(Projectile);
         p.transform.position = transform.position + new Vector3(direction.x, direction.y, 0) * 3.5f;
         p.GetComponent<Rigidbody2D>().velocity = direction * ProjectileSpeed;
-
+        var a = Instantiate(ShootSound);
+        Destroy(a, 1);
         Destroy(p, 5);
         FireAllowance--;
     }
